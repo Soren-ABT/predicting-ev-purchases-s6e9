@@ -1,0 +1,98 @@
+{
+  "package": "predicting-ev-purchases-s6e9-repro",
+  "purpose": "Byte-exact reproduction of one Kaggle S6E9 submission from three pinned prediction files.",
+  "competition": {
+    "name": "Predicting Electric Vehicle Purchases (Playground Series S6E9)",
+    "target_column": "Will_Buy_EV",
+    "metric": "ROC AUC",
+    "test_rows": 286571
+  },
+  "formula": "rank(0.625 * rank(M) + 0.325 * rank(C) + 0.05 * rank(O))",
+  "rank_definition": "scipy.stats.rankdata(values, method='average') / len(values)",
+  "output": {
+    "filename": "submission_round30_sprint.csv",
+    "sha256": "17680b24f665f95ec01bd7692ff0208dc575b2f0c4d41be9628f6fc687dc7bcf",
+    "rows": 286571
+  },
+  "inputs": [
+    {
+      "key": "M",
+      "weight": 0.625,
+      "file": "inputs/megayak_r8_m00_mega_verbatim.csv",
+      "sha256": "23052891f418c5b146693f5d811ceb81be4b560defe669972cdb8c3ddc664f78",
+      "rows": 286571,
+      "ownership": "third_party",
+      "contributor": "megayak",
+      "description": "Public prediction, reproduced verbatim inside the defiaudit dataset.",
+      "source": {
+        "dataset": "defiaudit/s6e9-realmlp-oof",
+        "version": 15,
+        "filename_in_source": "r8_m00_mega_verbatim.csv",
+        "url": "https://www.kaggle.com/datasets/defiaudit/s6e9-realmlp-oof/versions/15",
+        "original_notebook": "https://www.kaggle.com/code/megayak/s6e9-0-94656-reading-the-public-split",
+        "original_notebook_version_id": 350941977
+      },
+      "author_reported_public_score": 0.94656
+    },
+    {
+      "key": "C",
+      "weight": 0.325,
+      "file": "inputs/defiaudit_r6_rebuilt_94651.csv",
+      "sha256": "7ee8a5698217b3b5783a07526dc887ec5f47d42f667e487d19d79e00f3e52457",
+      "rows": 286571,
+      "ownership": "third_party",
+      "contributor": "defiaudit",
+      "description": "Public prediction from the defiaudit RealMLP OOF dataset; scored 0.94651 in that dataset's own results table.",
+      "source": {
+        "dataset": "defiaudit/s6e9-realmlp-oof",
+        "version": 15,
+        "filename_in_source": "r6_rebuilt_94651.csv",
+        "url": "https://www.kaggle.com/datasets/defiaudit/s6e9-realmlp-oof/versions/15"
+      },
+      "author_reported_public_score": 0.94651,
+      "notes": "The dataset notebook prose states 0.94652 while its results CSV states 0.94651; this package keeps the per-file table value and does not resolve the conflict."
+    },
+    {
+      "key": "O",
+      "weight": 0.05,
+      "file": "inputs/submission_round28.csv",
+      "sha256": "c1349315bdde776333b8ff3896c8a5ffb6e73884b65d94c5998544c769c60391",
+      "rows": 286571,
+      "ownership": "own",
+      "contributor": "this project",
+      "description": "19-column L1 logistic stacking meta-model output. Produced by reference/original/round28_run.py.",
+      "own_original_contribution": "meta-model design and fitting only; 15 of its 19 input columns are also public predictions",
+      "public_score": 0.94648
+    }
+  ],
+  "scores": {
+    "this_output": {
+      "public_score": 0.94657,
+      "public_rank": null,
+      "source": "user_measured",
+      "date": "2026-09-23",
+      "notes": "Rank not recorded. An unassigned project record of 'rank43 / 0.94657' from the same date could not be confirmed as this file, so no rank is claimed."
+    },
+    "previous_confirmed_best": {
+      "file": "submission_round28_public_reference.csv",
+      "public_score": 0.94657,
+      "public_rank": 49,
+      "source": "user_measured"
+    },
+    "comparison": "Ties the previous confirmed best at the displayed precision. This package does not claim any improvement over 0.94657."
+  },
+  "local_metrics": {
+    "O_proxy_oof_auc": 0.9464439573,
+    "O_parent_proxy_oof_auc": 0.9463817399,
+    "O_delta": 6.221733408140473e-05,
+    "is_nested_validation": false,
+    "caveat": "Historical OOF proxy reused across many rounds of selection; base models were not retrained inside the meta-model folds and the public sources have no paired OOF. This number is not transferable to a leaderboard estimate."
+  },
+  "environment": {
+    "python": "3.10.20",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "scipy": "1.15.3"
+  },
+  "third_party_code_executed": false
+}
