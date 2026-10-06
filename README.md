@@ -1,16 +1,5 @@
 # predicting-ev-purchases-s6e9-repro
 
-从三份固定预测文件，**逐字节复现**一份 Kaggle S6E9（Predicting Electric Vehicle Purchases）提交。
-
-```
-python src/fetch_sources.py        # 获取两份第三方输入并校验哈希
-python src/reproduce_champion.py   # 融合 → output/submission_round30_sprint.csv
-python src/verify.py               # 独立重算并校验
-```
-
-复现出的文件 SHA256 必须等于 `17680b24f665f95ec01bd7692ff0208dc575b2f0c4d41be9628f6fc687dc7bcf`（286 571 行）。对不上就说明复现失败，脚本会报错退出而不是产出文件。
-
----
 
 ## 成绩
 
